@@ -4,11 +4,14 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Stack;
 
 import me.jisung.RuleSetGrammarBaseListener;
@@ -42,6 +45,8 @@ public class TreeBuilder extends RuleSetGrammarBaseListener {
   private Stack<ComparisonOperand> comparisonOperands = new Stack<>();
   private Stack<ArithmeticExpression> arithmeticExpressions = new Stack<>();
 
+  private static final Logger logger = LoggerFactory.getLogger(TreeBuilder.class);
+
   public RuleSet getRuleSet() {
     return ruleSet;
 
@@ -67,6 +72,7 @@ public class TreeBuilder extends RuleSetGrammarBaseListener {
   @Override
   public void exitRule_set(RuleSetGrammarParser.Rule_setContext ctx) {
     super.exitRule_set(ctx);
+
   }
 
   //
@@ -358,11 +364,13 @@ public class TreeBuilder extends RuleSetGrammarBaseListener {
   @Override
   public void enterEveryRule(ParserRuleContext ctx) {
     super.enterEveryRule(ctx);
+    logger.info("[ENTER] " + ctx.getRuleIndex() + " ( getText : " + ctx.getText() + " | depth : "+ ctx.depth() + " | toString : "+ ctx.toString(Arrays.asList(RuleSetGrammarParser.ruleNames)) + " | toStringTree : " + ctx.toStringTree(Arrays.asList(RuleSetGrammarParser.ruleNames)) + " )");
   }
 
   @Override
   public void exitEveryRule(ParserRuleContext ctx) {
     super.exitEveryRule(ctx);
+    logger.info("[EXIT_] " + ctx.getRuleIndex() + " ( getText : " + ctx.getText() + " | depth : "+ ctx.depth() + " | toString : "+ ctx.toString(Arrays.asList(RuleSetGrammarParser.ruleNames)) + " | toStringTree : " + ctx.toStringTree(Arrays.asList(RuleSetGrammarParser.ruleNames)) + " )");
   }
 
   @Override

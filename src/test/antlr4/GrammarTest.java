@@ -12,6 +12,8 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
+import me.jisung.RuleSetGrammarLexer;
+import me.jisung.RuleSetGrammarParser;
 import me.jisung.compiler.ExceptionThrowingErrorHandler;
 
 /**

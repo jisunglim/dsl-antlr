@@ -56,8 +56,8 @@ public class CompilerTest {
         },
 
         {
-            "if (true) then TheConclusion;",
-            createRuleSet(LogicalConstant.getTrue())
+            "if (true) then TheConclusion; if (false) then TheConclusion;",
+            createRuleSet(LogicalConstant.getTrue(), LogicalConstant.getFalse())
         },
 
         {
@@ -95,7 +95,8 @@ public class CompilerTest {
   public void testRule() {
     Compiler compiler = new Compiler();
     RuleSet gotRuleSet = compiler.compile(stringToCompile);
-    System.out.println(gotRuleSet.equals(targetRuleSet));
+
+    System.out.println("[" + gotRuleSet.equals(targetRuleSet) + "] " + stringToCompile);
 
     assertEquals(targetRuleSet, gotRuleSet);
 

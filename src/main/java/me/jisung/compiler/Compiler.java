@@ -21,7 +21,7 @@ public class Compiler {
 
     TreeBuilder treeBuilder = new TreeBuilder();
     parser.addParseListener( treeBuilder );
-    parser.setErrorHandler(new ExceptionThrowingErrorHandler());
+//    parser.setErrorHandler(new ExceptionThrowingErrorHandler());
 
     parser.rule_set();
 
